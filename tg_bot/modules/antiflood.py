@@ -35,7 +35,8 @@ def check_flood(bot: Bot, update: Update) -> str:
 
     try:
         chat.kick_member(user.id)
-        msg.reply_text("Do not flood group as a result you will be muted for certain period like this, do wait till the ban period is completed")
+        msg.reply_text("I like to leave the flooding to natural disasters. But you, you were just a "
+                       "disappointment. Get out.")
 
         return "<b>{}:</b>" \
                "\n#BANNED" \
