@@ -11,7 +11,7 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin, c
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
 
-FLOOD_GROUP = 2
+FLOOD_GROUP = 3
 
 
 @run_async
@@ -76,7 +76,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                        "\n<b>Admin:</b> {}" \
                        "\nDisabled antiflood.".format(html.escape(chat.title), mention_html(user.id, user.first_name))
 
-            elif amount < 1:
+            elif amount < 3:
                 message.reply_text("Antiflood has to be either 0 (disabled), or a number bigger than 2!")
                 return ""
 
