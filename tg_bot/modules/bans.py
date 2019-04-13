@@ -104,7 +104,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("You know that admins can't be banned, so stop using the command or it will be used for you!")
+        message.reply_text("You know that admins can't be banned, so stop using the command or it will be used for you.")
         return ""
 
     if user_id == bot.id:
