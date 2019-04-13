@@ -45,7 +45,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you nuts?")
+        message.reply_text("I'm not gonna BAN myself. Only admin can ban me manually.")
         return ""
 
     log = "<b>{}:</b>" \
@@ -73,7 +73,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
             LOGGER.warning(update)
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("oops!, I can't ban that user.")
 
     return ""
 
@@ -108,7 +108,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself ?")
+        message.reply_text("I'm not gonna BAN myself.")
         return ""
 
     if not reason:
@@ -155,7 +155,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             LOGGER.warning(update)
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("Oops!, I can't ban that user.")
 
     return ""
 
@@ -209,7 +209,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
         return log
 
     else:
-        message.reply_text("Well damn, I can't kick that user.")
+        message.reply_text("Oop! I can't kick that user.")
 
     return ""
 
@@ -263,7 +263,7 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     chat.unban_member(user_id)
-    message.reply_text("Yep, this user can join!")
+    message.reply_text("Yep, I am allowing this user to join the group again, but no violation of rules is allowed ! ")
 
     log = "<b>{}:</b>" \
           "\n#UNBANNED" \
