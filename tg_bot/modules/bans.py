@@ -185,11 +185,11 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("I really wish I could kick admins...")
+        message.reply_text("I cannot ban the admins, you know it very well, do not use the command again..")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("Yeahhh I'm not gonna do that")
+        message.reply_text("I'm not gonna do that")
         return ""
 
     res = chat.unban_member(user_id)  # unban on current user = kick
