@@ -19,8 +19,8 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hi {}, my name is {}! If you have any questions on how to use me, read /help. 
-I'm a group manager bot maintained by Mi Community Team. I'm built in python3.
+Hi {}, my name is {} bot! If you have any questions on how to use me, read /help. 
+I'm  created and maintained by Mi Community Team.
 You can find the list of available commands with /help.
 """
 
