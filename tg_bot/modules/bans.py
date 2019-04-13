@@ -45,7 +45,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you nuts?")
+        message.reply_text("I'm not gonna BAN myself")
         return ""
 
     log = "<b>{}:</b>" \
@@ -73,7 +73,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
             LOGGER.warning(update)
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("Well, I can't ban that user.")
 
     return ""
 
@@ -104,11 +104,11 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("I really wish I could ban admins...")
+        message.reply_text("I cannot ban the admins, you know it very well, do not use the command again..")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text("I'm not gonna BAN myself")
         return ""
 
     if not reason:
@@ -209,7 +209,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
         return log
 
     else:
-        message.reply_text("Well damn, I can't kick that user.")
+        message.reply_text("Well, I can't kick that user.")
 
     return ""
 
