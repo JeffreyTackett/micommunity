@@ -1,14 +1,15 @@
 
 {
-  "name": "Jack",
-  "description": "Telegram's sassiest group manager. Modular Telegram group management bot!",
+  "name": "MIUI Beta Butler",
+  "description": "MIUI Beta Team's group manager. Created by the beta admins using the public sources!",
   "keywords": [
     "telegram",
     "best",
     "group",
     "manager",
     "3",
-    "jack"
+    "MIUI"
+    "Beta"
   ],
   "repository": "https://github.com/JeffreyTackett/miuibeta",
   "env": {
@@ -22,11 +23,11 @@
     },
     "OWNER_ID": {
       "description": "An integer of consisting of your owner ID",
-      "value": "478172960"
+      "value": "264253869"
     },
     "OWNER_USERNAME": {
       "description": "Your username",
-      "value": "surajsharma007"
+      "value": "SivAbhi"
     },
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode messages",
@@ -46,11 +47,11 @@
     },
     "SUPPORT_USERS": {
       "description": "A space separated list of user_ids which should be considered support users (can gban/ungban, nothing else)",
-      "value": "254318997 18673980 83489514"
+      "value": "264253869 101609689"
     },
     "WHITELIST_USERS": {
       "description": "A space separated list of user_ids which should be considered whitelisted - they can't be banned.",
-      "value": "254318997 18673980 83489514"
+      "value": "264253869 101609689"
     },
     "DONATION_LINK": {
       "description": "Optional: link where you would like to receive donations.",
