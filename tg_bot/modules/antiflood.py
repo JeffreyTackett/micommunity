@@ -35,7 +35,8 @@ def check_flood(bot: Bot, update: Update) -> str:
 
     try:
         chat.kick_member(user.id)
-        msg.reply_text("Flooding is not allowed here, type you message in single message next time. Get out.")
+        msg.reply_text("I like to leave the flooding to natural disasters. But you, you were just a "
+                       "disappointment. Get out.")
 
         return "<b>{}:</b>" \
                "\n#BANNED" \
@@ -77,7 +78,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                        "\nDisabled antiflood.".format(html.escape(chat.title), mention_html(user.id, user.first_name))
 
             elif amount < 3:
-                message.reply_text("Antiflood has to be either 0 (disabled), or a number bigger than 2!")
+                message.reply_text("Antiflood has to be either 0 (disabled), or a number bigger than 3!")
                 return ""
 
             else:
@@ -121,7 +122,6 @@ def __chat_settings__(chat_id, user_id):
 
 __help__ = """
  - /flood: Get the current flood control setting
-
 *Admin only:*
  - /setflood <int/'no'/'off'>: enables or disables flood control
 """
