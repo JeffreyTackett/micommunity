@@ -26,7 +26,7 @@ You can find the list of available commands with /help.
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a modular group management bot Made by and for MI community Members.
+I'm a modular group management bot Made by [this wonderful person](tg://user?id={}). for MI community Members.
 
 *Main* commands available:
  - /start: start the bot
