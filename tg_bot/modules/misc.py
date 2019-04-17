@@ -340,7 +340,7 @@ def gdpr(bot: Bot, update: Update):
                                         "which clearly states that the right to erasure does not apply "
                                         "\"for the performance of a task carried out in the public interest\", as is "
                                         "the case for the aforementioned pieces of data.",
-                                        parse_mode=ParseMode.MARKDOWN)
+                                        parse_mode=ParseMode.MARKDOWN, dispatcher.bot.first_name)
 
 
 MARKDOWN_HELP = """
