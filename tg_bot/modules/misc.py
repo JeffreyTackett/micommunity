@@ -339,8 +339,8 @@ def gdpr(bot: Bot, update: Update):
                                         "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
                                         "which clearly states that the right to erasure does not apply "
                                         "\"for the performance of a task carried out in the public interest\", as is "
-                                        "the case for the aforementioned pieces of data.",
-                                        parse_mode=ParseMode.MARKDOWN).format(dispatcher.bot.first_name)
+                                        "the case for the aforementioned pieces of data.".format(dispatcher.bot.first_name),
+                                        parse_mode=ParseMode.MARKDOWN)
 
 
 MARKDOWN_HELP = """
