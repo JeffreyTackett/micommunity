@@ -78,7 +78,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                        "\nDisabled antiflood.".format(html.escape(chat.title), mention_html(user.id, user.first_name))
 
             elif amount < 1:
-                message.reply_text("Antiflood has to be either 0 (disabled), or a number bigger than 3!")
+                message.reply_text("Antiflood has to be either 0 (disabled), or a number bigger than 1!")
                 return ""
 
             else:
