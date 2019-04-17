@@ -80,7 +80,9 @@ SLAP_TEMPLATES = (
     "{user1} pins {user2} down and repeatedly {hits} them with a {item}.",
     "{user1} grabs up a {item} and {hits} {user2} with it.",
     "{user1} ties {user2} to a chair and {throws} a {item} at them.",
-    "{user1} gave a friendly push to help {user2} learn to swim in lava."
+    "{user1} gave a friendly push to help {user2} learn to swim in lava.",
+    "{user1} gave a friendly pushed {user2}  in lava.",
+
 )
 
 ITEMS = (
@@ -113,6 +115,7 @@ ITEMS = (
     "piece of rotten meat",
     "bear",
     "ton of bricks",
+    "Redmi note 4"
 )
 
 THROW = (
@@ -120,6 +123,7 @@ THROW = (
     "flings",
     "chucks",
     "hurls",
+    "MI A1"
 )
 
 HIT = (
@@ -330,7 +334,7 @@ def gdpr(bot: Bot, update: Update):
         mod.__gdpr__(update.effective_user.id)
 
     update.effective_message.reply_text("Your personal data has been deleted.\n\nNote that this will not unban "
-                                        "you from any chats, as that is telegram data, not Marie data. "
+                                        "you from any chats, as that is telegram data, not {} data. "
                                         "Flooding, warns, and gbans are also preserved, as of "
                                         "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
                                         "which clearly states that the right to erasure does not apply "
