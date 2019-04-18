@@ -64,22 +64,6 @@ def update_flood(chat_id: str, user_id) -> bool:
         CHAT_FLOOD[str(chat_id)] = (user_id, count, limit)
         return False
 
-def muteflood(chat_id: str, user_id) -> bool:
-    if str(chat_id) in CHAT_FLOOD:
-        curr_user_id, count, limit = CHAT_FLOOD.get(str(chat_id), DEF_OBJ)
-
-        if limit == 0:  # no antiflood
-            return False
-
-        if user_id != curr_user_id or user_id is None:  # other user
-            CHAT_FLOOD[str(chat_id)] = (user_id, DEF_COUNT, limit)
-            return False
-
-        count += 1
-        if count >= limit:  # too many msgs, kick
-            CHAT_FLOOD[str(chat_id)] = (None, DEF_COUNT, limit)
-            return True
-
 
 
 def get_flood_limit(chat_id):
