@@ -34,7 +34,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-        chat.unban_member(user.id)
+        sql.warn_user(user.id, chat.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
                        "")
 
