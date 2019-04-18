@@ -35,7 +35,7 @@ def check_flood(bot: Bot, update: Update) -> str:
 
     try:
         
-        msg.reply_text("<code>/mute<code>"
+        msg.reply_text(/mute
                        "kicked!")
 
         return "<b>{}:</b>" \
