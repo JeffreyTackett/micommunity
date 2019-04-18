@@ -1,12 +1,18 @@
 # tgbot
+
+#Note: 
+This is a clone of [Marie](https://t.me/banhammermarie_bot) a open source repo by [This wonderful user](https://github.com/paulsonoflars), whihc is still under testing and development and not ready to use it on production environment. 
+
+[I am](https://t.me/Surajsharma007) currently trying to change some default functions and veriable. 
+
+#TODO:: Change antiflood to mute instead of banning/kicking users. 
 A modular telegram Python bot running on python3 with an sqlalchemy database.
 
 Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and 
 simple to use.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/JeffreyTackett/miuibeta)
 
-Can be found on telegram as [Jack](https://t.me/Banhammerjack_bot).
+Can be found on telegram as [Jack](https://t.me/micommunity_bot).
 
 
 Alternatively, [find me on telegram](https://t.me/Surajsharma007)! (Keep all support questions in the support chat, where more people can help you.)
