@@ -96,7 +96,7 @@ def unmute(bot: Bot, update: Update, args: List[str]) -> str:
                                                   mention_html(user.id, user.first_name),
                                                   mention_html(member.user.id, member.user.first_name))
     else:
-        message.reply_text("This user isn't even in the chat, unmuting them won't make them talk more than they "
+        message.reply_text("This user isn't even in the chat, unmuting won't make them talk more than they "
                            "already do!")
 
     return ""
