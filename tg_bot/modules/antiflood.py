@@ -21,37 +21,37 @@ def check_flood(bot: Bot, update: Update) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
 
-    user_id = extract_user(message, args)
-    if not user_id:
-        message.reply_text("You'll need to either give me a username to mute, or reply to someone to be muted.")
+    if not user:  # ignore channels
         return ""
 
-    if user_id == bot.id:
-        message.reply_text("I'm not muting myself!")
+    # ignore admins
+    if is_user_admin(chat, user.id):
+        sql.update_flood(chat.id, None)
         return ""
 
-    member = chat.get_member(int(user_id))
+    should_ban = sql.update_flood(chat.id, user.id)
+    if not should_ban:
+        return ""
 
-    if member:
-        if is_user_admin(chat, user_id, member=member):
-            message.reply_text("Afraid I can't stop an admin from talking!")
+    try:
+        chat.unban_member(user.id)
+        msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time. "
+                       "kicked!")
 
-        elif member.can_send_messages is None or member.can_send_messages:
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted!")
-            return "<b>{}:</b>" \
-                   "\n#MUTE" \
-                   "\n<b>Admin:</b> {}" \
-                   "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                              mention_html(user.id, user.first_name),
-                                              mention_html(member.user.id, member.user.first_name))
+        return "<b>{}:</b>" \
+               "\n#kicked" \
+               "\n<b>User:</b> {}" \
+               "\nFlooded the group.".format(html.escape(chat.title),
+                                             mention_html(user.id, user.first_name))
 
-        else:
-            message.reply_text("This user is already muted!")
-    else:
-        message.reply_text("This user isn't in the chat!")
+    except BadRequest:
+        msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
+        sql.set_flood(chat.id, 0)
+        return "<b>{}:</b>" \
+               "\n#INFO" \
+               "\nDon't have kick permissions, so automatically disabled antiflood.".format(chat.title)
 
-    return ""
+
 @run_async
 @user_admin
 @can_restrict
