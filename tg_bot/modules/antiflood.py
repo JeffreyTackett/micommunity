@@ -16,7 +16,7 @@ FLOOD_GROUP = 3
 
 @run_async
 @loggable
-def check_flood(bot: Bot, update: Update args: List[str]) -> str:
+def check_flood(bot: Bot, update: Update, args: List[str]) -> str:
     user = update.effective_user  # type: Optional[User]
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
