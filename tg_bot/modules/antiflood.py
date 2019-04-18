@@ -29,8 +29,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         sql.update_flood(chat.id, None)
         return ""
 
-    if member.can_send_messages is None or member.can_send_messages:
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
+    should_ban = sql.update_flood(chat.id, user.id)
     if not should_ban:
         return ""
 
