@@ -34,7 +34,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-        chat.kick_member(user.id)
+        chat.warn_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
                        "")
 
