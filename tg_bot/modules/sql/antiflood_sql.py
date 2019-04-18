@@ -56,7 +56,7 @@ def update_flood(chat_id: str, user_id) -> bool:
             return False
 
         count += 1
-        if count > limit:  # too many msgs, kick
+        if count >= limit:  # too many msgs, kick
             CHAT_FLOOD[str(chat_id)] = (None, count, limit)
             return True
 
