@@ -34,12 +34,17 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-        chat.unban_member(user.id)
+       with WARN_INSERTION_LOCK:
+        warned_user = SESSION.query(Warns).get((user_id, str(chat_id)))
+        if not warned_user:
+            warned_user = Warns(user_id, str(chat_id))
+
+        warned_user.num_warns += 1
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
                        "")
 
         return "<b>{}:</b>" \
-               "\n#BANNED" \
+               "\n#kicked" \
                "\n<b>User:</b> {}" \
                "\nFlooded the group.".format(html.escape(chat.title),
                                              mention_html(user.id, user.first_name))
@@ -105,7 +110,7 @@ def flood(bot: Bot, update: Update):
         update.effective_message.reply_text("I'm not currently enforcing flood control!")
     else:
         update.effective_message.reply_text(
-            "I'm currently banning users if they send more than {} consecutive messages.".format(limit))
+            "I will kick users if they send more than {} consecutive messages.".format(limit))
 
 
 def __migrate__(old_chat_id, new_chat_id):
