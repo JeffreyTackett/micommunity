@@ -5,13 +5,11 @@ from telegram import Message, Chat, Update, Bot, User
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
-from telegram.ext.dispatcher import run_async
-from tg_bot import dispatcher, LOGGER
+
+from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin, can_restrict
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
-from tg_bot.modules.helper_funcs.string_handling import extract_time
-from tg_bot.modules.log_channel import loggable
 
 FLOOD_GROUP = 3
 
@@ -35,9 +33,8 @@ def check_flood(bot: Bot, update: Update) -> str:
     if not should_ban:
         return ""
 
-    
-        try 
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
+    try:
+        chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time. "
                        "kicked!")
 
@@ -134,11 +131,7 @@ __mod_name__ = "AntiFlood"
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)
 FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.group)
-MUTE_HANDLER = CommandHandler("mute", mute, pass_args=True, filters=Filters.group)
-
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)
 dispatcher.add_handler(FLOOD_HANDLER)
-dispatcher.add_handler(MUTE_HANDLER)
-
