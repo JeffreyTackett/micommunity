@@ -29,7 +29,7 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not going mute myself! :unamused:")
+        message.reply_text("I'm not going to mute myself! :unamused:")
         return ""
 
     member = chat.get_member(int(user_id))
