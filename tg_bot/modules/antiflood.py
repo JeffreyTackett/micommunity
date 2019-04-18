@@ -16,7 +16,7 @@ FLOOD_GROUP = 3
 
 @run_async
 @loggable
-def check_flood(bot: Bot, update: Update, args: List[str]) -> str:
+def check_flood(bot: Bot, update: Update) -> str:
     user = update.effective_user  # type: Optional[User]
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
@@ -33,7 +33,7 @@ def check_flood(bot: Bot, update: Update, args: List[str]) -> str:
     if not should_ban:
         return ""
 
-    if
+    try:
         chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time. "
                        "kicked!")
