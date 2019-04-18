@@ -33,7 +33,7 @@ def check_flood(bot: Bot, update: Update) -> str:
     if not should_ban:
         return ""
 
-    try:
+    if
         chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time. "
                        "kicked!")
