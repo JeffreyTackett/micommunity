@@ -48,13 +48,8 @@ def check_flood(bot: Bot, update: Update) -> str:
                                              else:
         message.reply_text("This user isn't even in the chat, unmuting won't make them talk more than they "
                            "already do!")
+                           return ""
 
-    except BadRequest:
-        msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
-        sql.set_flood(chat.id, 0)
-        return "<b>{}:</b>" \
-               "\n#INFO" \
-               "\nDon't have kick permissions, so automatically disabled antiflood.".format(chat.title)
 
 
 @run_async
