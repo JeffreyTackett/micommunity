@@ -51,12 +51,12 @@ def update_flood(chat_id: str, user_id) -> bool:
         if limit == 0:  # no antiflood
             return False
 
-        count += 1
         if user_id != curr_user_id or user_id is None:  # other user
-            CHAT_FLOOD[str(chat_id)] = (user_id, count, limit)
+            CHAT_FLOOD[str(chat_id)] = (user_id, DEF_COUNT, limit)
             return False
 
-        if count >= limit:  # too many msgs, kick
+        count += 1
+        if count > limit:  # too many msgs, kick
             CHAT_FLOOD[str(chat_id)] = (None, DEF_COUNT, limit)
             return True
 
@@ -78,5 +78,15 @@ def migrate_chat(old_chat_id, new_chat_id):
             SESSION.commit()
 
         SESSION.close()
+
+
+def __load_flood_settings():
+    global CHAT_FLOOD
+    try:
+        all_chats = SESSION.query(FloodControl).all()
+        CHAT_FLOOD = {chat.chat_id: (None, DEF_COUNT, chat.limit) for chat in all_chats}
+    finally:
+        SESSION.close()
+
 
 __load_flood_settings()
