@@ -20,7 +20,7 @@ def check_flood(bot: Bot, update: Update) -> str:
     user = update.effective_user  # type: Optional[User]
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
-
+user_id = extract_user(message, args)
     if not user:  # ignore channels
         return ""
 
