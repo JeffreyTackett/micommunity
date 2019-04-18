@@ -20,7 +20,7 @@ def check_flood(bot: Bot, update: Update) -> str:
     user = update.effective_user  # type: Optional[User]
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
-user_id = extract_user(message, args)
+
     if not user:  # ignore channels
         return ""
 
@@ -34,7 +34,7 @@ user_id = extract_user(message, args)
         return ""
 
     try:
-        bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
+        chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
 
         return "<b>{}:</b>" \
