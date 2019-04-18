@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String
 
 from tg_bot.modules.sql import BASE, SESSION
 
-DEF_COUNT = 0
+DEF_COUNT = 1
 DEF_LIMIT = 0
 DEF_OBJ = (None, DEF_COUNT, DEF_LIMIT)
 
