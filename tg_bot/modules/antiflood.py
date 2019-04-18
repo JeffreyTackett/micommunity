@@ -33,8 +33,10 @@ def check_flood(bot: Bot, update: Update) -> str:
     if not should_ban:
         return ""
 
-    try:
-        chat.unban_member(user.id)
+   
+        if member.can_send_messages: 
+            bot.restrict_chat_member(chat.id, int(user_id),
+                                         can_send_messages=False
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time. "
                        "kicked!")
 
@@ -43,6 +45,9 @@ def check_flood(bot: Bot, update: Update) -> str:
                "\n<b>User:</b> {}" \
                "\nFlooded the group.".format(html.escape(chat.title),
                                              mention_html(user.id, user.first_name))
+                                             else:
+        message.reply_text("This user isn't even in the chat, unmuting won't make them talk more than they "
+                           "already do!")
 
     except BadRequest:
         msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
