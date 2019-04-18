@@ -12,6 +12,16 @@ from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
+Warns.__table__.create(checkfirst=True)
+WarnFilters.__table__.create(checkfirst=True)
+WarnSettings.__table__.create(checkfirst=True)
+
+WARN_INSERTION_LOCK = threading.RLock()
+WARN_FILTER_INSERTION_LOCK = threading.RLock()
+WARN_SETTINGS_LOCK = threading.RLock()
+
+WARN_FILTERS = {}
+
 
 
 @run_async
