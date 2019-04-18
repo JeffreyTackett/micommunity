@@ -5,7 +5,7 @@ from sqlalchemy import Column, String, Boolean, UnicodeText, Integer, BigInteger
 from tg_bot.modules.helper_funcs.msg_types import Types
 from tg_bot.modules.sql import SESSION, BASE
 
-DEFAULT_WELCOME = "Hi! {first}, welcome to {chatname}, do read the rules and important instructions and follow them"
+DEFAULT_WELCOME = "Hi! {first}, welcome to {chat.id}, do read the rules and important instructions and follow them"
 DEFAULT_GOODBYE = "Thanks for your contribution {first}, See Ya around!"
 
 
