@@ -10,19 +10,8 @@ from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin, can_restrict
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
-from tg_bot.modules.log_channel import loggable
-from tg_bot.modules.sql import warns_sql as sql
 
 FLOOD_GROUP = 3
-Warns.__table__.create(checkfirst=True)
-WarnFilters.__table__.create(checkfirst=True)
-WarnSettings.__table__.create(checkfirst=True)
-
-WARN_INSERTION_LOCK = threading.RLock()
-WARN_FILTER_INSERTION_LOCK = threading.RLock()
-WARN_SETTINGS_LOCK = threading.RLock()
-
-WARN_FILTERS = {}
 
 
 @run_async
@@ -45,7 +34,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-       sql.warn_user(user.id)
+        chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
                        "")
 
