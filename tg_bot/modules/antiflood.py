@@ -45,22 +45,6 @@ def check_flood(bot: Bot, update: Update) -> str:
 
     try:
         warn_user(user_id, chat_id, reason=None):
-    with WARN_INSERTION_LOCK:
-        warned_user = SESSION.query(Warns).get((user_id, str(chat_id)))
-        if not warned_user:
-            warned_user = Warns(user_id, str(chat_id))
-
-        warned_user.num_warns += 1
-        if reason:
-            warned_user.reasons = warned_user.reasons + [reason]  # TODO:: double check this wizardry
-
-        reasons = warned_user.reasons
-        num = warned_user.num_warns
-
-        SESSION.add(warned_user)
-        SESSION.commit()
-
-        return num, reasons
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
                        "")
 
