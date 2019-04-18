@@ -107,41 +107,6 @@ def flood(bot: Bot, update: Update):
             "I will kick users if they send more than {} consecutive messages.".format(limit))
 
 
-       
-@run_async
-@loggable
-def muteflood(bot: Bot, update: Update, args: List[str]) -> str:
-    user = update.effective_user  # type: Optional[User]
-    chat = update.effective_chat  # type: Optional[Chat]
-    msg = update.effective_message  # type: Optional[Message]
-
-user_id = extract_user(message, args)
-    if not user_id:
-        return ""
-
-    if user_id == bot.id:
-        return ""
-
-    member = chat.get_member(int(user_id))
-
-    if member:
-        if is_user_admin(chat, user_id, member=member):
-         return ""
-
-        if 
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted! This user can't talk now.")
-            return "<b>{}:</b>" \
-                   "\n#MUTE" \
-                   "\n<b>Admin:</b> {}" \
-                   "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                              mention_html(user.id, user.first_name),
-                                              mention_html(member.user.id, member.user.first_name))
-
-
-
-
-
 def __migrate__(old_chat_id, new_chat_id):
     sql.migrate_chat(old_chat_id, new_chat_id)
 
