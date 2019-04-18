@@ -33,16 +33,22 @@ def check_flood(bot: Bot, update: Update) -> str:
     if not should_ban:
         return ""
 
-       user = chat.get_member(int(user_id))
-       
-       if member.can_send_messages is None or member.can_send_messages:
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted! This user can't talk now.")
+    try:
+        bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
+        msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
 
-            return ""
-            else 
-             message.reply_text("wait for your turn")
+        return "<b>{}:</b>" \
+               "\n#kicked" \
+               "\n<b>User:</b> {}" \
+               "\nFlooded the group.".format(html.escape(chat.title),
+                                             mention_html(user.id, user.first_name))
 
+    except BadRequest:
+        msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
+        sql.set_flood(chat.id, 0)
+        return "<b>{}:</b>" \
+               "\n#INFO" \
+               "\nDon't have kick permissions, so automatically disabled antiflood.".format(chat.title)
 
 
 @run_async
