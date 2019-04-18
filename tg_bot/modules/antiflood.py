@@ -132,7 +132,11 @@ __mod_name__ = "AntiFlood"
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)
 FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.group)
+MUTE_HANDLER = CommandHandler("mute", mute, pass_args=True, filters=Filters.group)
+
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)
 dispatcher.add_handler(FLOOD_HANDLER)
+dispatcher.add_handler(MUTE_HANDLER)
+
