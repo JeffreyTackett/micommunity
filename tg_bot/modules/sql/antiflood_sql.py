@@ -1,11 +1,11 @@
 import threading
 
-from sqlalchemy import String, Column, Integer
+from sqlalchemy import Column, Integer, String, 
 
-from tg_bot.modules.sql import SESSION, BASE
+from tg_bot.modules.sql import BASE, SESSION
 
 DEF_COUNT = 1
-DEF_LIMIT = 3
+DEF_LIMIT = 0
 DEF_OBJ = (None, DEF_COUNT, DEF_LIMIT)
 
 class FloodControl(BASE):
