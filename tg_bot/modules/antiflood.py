@@ -31,7 +31,7 @@ def check_flood(bot: Bot, update: Update) -> str:
 
     should_ban = sql.update_flood(chat.id, user.id)
     if not should_ban:
-        return ""
+        return "hello"
 
     try:
         
