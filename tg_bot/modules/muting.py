@@ -25,22 +25,22 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You'll need to either give me a username to mute, or reply to someone to be muted.")
+        message.reply_text("I'll need either a username to mute, or reply to someone to be muted.")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not going to mute myself! :unamused:")
+        message.reply_text("I'm not going to mute myself!")
         return ""
 
     member = chat.get_member(int(user_id))
 
     if member:
         if is_user_admin(chat, user_id, member=member):
-            message.reply_text("Afraid I can't stop an admin from talking!")
+            message.reply_text("How can i mute an admin?!")
 
         if member.can_send_messages is None or member.can_send_messages:
             bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted! This user can't talk here now.")
+            message.reply_text("Muted! This user can't talk now.")
             return "<b>{}:</b>" \
                    "\n#MUTE" \
                    "\n<b>Admin:</b> {}" \
@@ -51,7 +51,7 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
         else:
             message.reply_text("This user is already muted!")
     else:
-        message.reply_text("This user isn't in the chat!")
+        message.reply_text("I can't find this user here!")
 
     return ""
 
@@ -67,14 +67,14 @@ def unmute(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You'll need to either give me a username to unmute, or reply to someone to be unmuted.")
+        message.reply_text("Give me a username to unmute, or reply to someone to be unmuted.")
         return ""
 
     member = chat.get_member(int(user_id))
 
     if member:
         if is_user_admin(chat, user_id, member=member):
-            message.reply_text("This is an admin, what do you expect me to do?")
+            message.reply_text("Huh!, This is an admin!")
             return ""
 
         elif member.status != 'kicked' and member.status != 'left':
