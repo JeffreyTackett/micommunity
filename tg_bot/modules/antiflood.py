@@ -34,15 +34,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-       warned_user.num_warns += 1
-        if reason:
-            warned_user.reasons = warned_user.reasons + [reason]  # TODO:: double check this wizardry
-
-        reasons = warned_user.reasons
-        num = warned_user.num_warns
-
-        SESSION.add(warned_user)
-        SESSION.commit()
+        chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
                        "")
 
