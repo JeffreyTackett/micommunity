@@ -13,8 +13,7 @@ from tg_bot.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
 
-@bot_admin
-@user_admin
+
 @run_async
 @loggable
 def check_flood(bot: Bot, update: Update) -> str:
@@ -34,15 +33,16 @@ def check_flood(bot: Bot, update: Update) -> str:
     if not should_ban:
         return ""
 
-   elif member.can_send_messages is None or member.can_send_messages:
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted!")
-            return "<b>{}:</b>" \
-                   "\n#MUTE" \
-                   "\n<b>Admin:</b> {}" \
-                   "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                              mention_html(user.id, user.first_name),
-                                              mention_html(member.user.id, member.user.first_name))
+    try:
+        chat.unban_member(user.id)
+        msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time."
+                       "")
+
+        return "<b>{}:</b>" \
+               "\n#kicked" \
+               "\n<b>User:</b> {}" \
+               "\nFlooded the group.".format(html.escape(chat.title),
+                                             mention_html(user.id, user.first_name))
 
     except BadRequest:
         msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
@@ -131,16 +131,6 @@ __mod_name__ = "AntiFlood"
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)
 FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.group)
-__mod_name__ = "Muting"
-
-MUTE_HANDLER = CommandHandler("mute", mute, pass_args=True, filters=Filters.group)
-UNMUTE_HANDLER = CommandHandler("unmute", unmute, pass_args=True, filters=Filters.group)
-TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute, pass_args=True, filters=Filters.group)
-
-dispatcher.add_handler(MUTE_HANDLER)
-dispatcher.add_handler(UNMUTE_HANDLER)
-dispatcher.add_handler(TEMPMUTE_HANDLER)
-
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)
