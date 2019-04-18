@@ -34,7 +34,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-        def warn_user(user_id, chat_id, reason=None):
+        warn_user(user_id, chat_id, reason=None):
     with WARN_INSERTION_LOCK:
         warned_user = SESSION.query(Warns).get((user_id, str(chat_id)))
         if not warned_user:
