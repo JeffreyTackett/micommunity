@@ -33,8 +33,8 @@ def check_flood(bot: Bot, update: Update) -> str:
     if not should_ban:
         return ""
 
-                      if member.can_send_messages is None or member.can_send_messages:
-            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
+    try:
+        chat.unban_member(user.id)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time. "
                        "kicked!")
 
