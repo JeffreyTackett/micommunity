@@ -40,7 +40,7 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
     if num_warns >= limit:
         sql.reset_warns(user.id, chat.id)
         if soft_warn:  # kick
-            chat.warn_member(user.id)
+            chat.unban_member(user.id)
             reply = "{} warnings, {} has been kicked!".format(limit, mention_html(user.id, user.first_name))
 
         else:  # ban
