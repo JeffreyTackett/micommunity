@@ -14,7 +14,9 @@ from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
-
+@bot_admin
+@can_promote
+@user_admin
 @can_promote
 @run_async
 @loggable
