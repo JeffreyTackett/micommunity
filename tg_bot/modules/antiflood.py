@@ -15,7 +15,7 @@ from tg_bot.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
 
-
+@can_promote
 @run_async
 @loggable
 def check_flood(bot: Bot, update: Update) -> str:
