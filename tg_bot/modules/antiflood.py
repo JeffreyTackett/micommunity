@@ -8,19 +8,15 @@ from telegram.utils.helpers import mention_html
 
 from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin, can_restrict
-from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin
-
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
-@bot_admin
-@can_promote
-@user_admin
-@can_promote
+
+
 @run_async
 @loggable
-def check_flood(bot: Bot, update: Update, args: List[str]) -> str:
+def check_flood(bot: Bot, update: Update) -> str:
     user = update.effective_user  # type: Optional[User]
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
@@ -38,17 +34,8 @@ def check_flood(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     try:
-      bot.promoteChatMember(int(chat.id), int(user_id),
-                              can_change_info=False,
-                              can_post_messages=False,
-                              can_edit_messages=False,
-                              can_delete_messages=False,
-                              can_invite_users=False,
-                              can_restrict_members=False,
-                              can_pin_messages=False,
-                              can_promote_members=False)
-        message.reply_text("Successfully demoted!")
-       # msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
+        chat.unban_member(user.id)
+        msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
 
         return "<b>{}:</b>" \
                "\n#kicked" \
@@ -147,4 +134,3 @@ FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.group)
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)
 dispatcher.add_handler(FLOOD_HANDLER)
-dispatcher.add_handler(DEMOTE_HANDLER)
