@@ -32,11 +32,17 @@ def check_flood(bot: Bot, update: Update) -> str:
     should_ban = sql.update_flood(chat.id, user.id)
     if not should_ban:
         return ""
-
-    try:
-        chat.unban_member(user.id)
-        msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
-
+try:
+    bot.promoteChatMember(int(chat.id), int(user_id),
+                              can_change_info=False,
+                              can_post_messages=False,
+                              can_edit_messages=False,
+                              can_delete_messages=False,
+                              can_invite_users=False,
+                              can_restrict_members=False,
+                              can_pin_messages=False,
+                              can_promote_members=False)
+        message.reply_text("Successfully demoted!")
         return "<b>{}:</b>" \
                "\n#kicked" \
                "\n<b>User:</b> {}" \
