@@ -135,4 +135,3 @@ FMUTE_HANDLER = CommandHandler("fmute", fmute, pass_args=True, filters=Filters.g
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)
 dispatcher.add_handler(FLOOD_HANDLER)
-dispatcher.add_handler(FMUTE_HANDLER)
