@@ -34,7 +34,7 @@ def check_flood(bot: Bot, update: Update) -> str:
         return ""
 
     try:
-      restrictChatMember(chat.id, user_id, can_send_messages=False)
+      bot.restrictChatMember(chat.id, user_id, can_send_messages=False)
         msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
 
         return "<b>{}:</b>" \
