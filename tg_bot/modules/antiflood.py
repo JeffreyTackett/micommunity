@@ -32,7 +32,8 @@ def check_flood(bot: Bot, update: Update) -> str:
     should_ban = sql.update_flood(chat.id, user.id)
     if not should_ban:
         return ""
-
+ try:
+        member = chat.get_member(user_id)
         if member.can_send_messages is None or member.can_send_messages:
             bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
             message.reply_text("Muted! This user can't talk now.")
