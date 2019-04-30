@@ -32,24 +32,24 @@ def check_flood(bot: Bot, update: Update) -> str:
     should_ban = sql.update_flood(chat.id, user.id)
     if not should_ban:
         return ""
-        member = chat.get_member(int(user_id))
 
-        if member.can_send_messages is None or member.can_send_messages:
-            restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted! This user can't talk now.")
-            return "<b>{}:</b>" \
-                   "\n#MUTE" \
-                   "\n<b>Admin:</b> {}" \
-                   "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                              mention_html(user.id, user.first_name),
-                                              mention_html(member.user.id, member.user.first_name))
+    try:
+      restrictChatMember
+        msg.reply_text("I don't like someone sending multiple messages at a time, Use edit option next time.")
 
-        else:
-            message.reply_text("This user is already muted!")
-    else:
-        message.reply_text("I can't find this user here!")
+        return "<b>{}:</b>" \
+               "\n#kicked" \
+               "\n<b>User:</b> {}" \
+               "\nFlooded the group.".format(html.escape(chat.title),
+                                             mention_html(user.id, user.first_name))
 
-    return ""
+    except BadRequest:
+        msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
+        sql.set_flood(chat.id, 0)
+        return "<b>{}:</b>" \
+               "\n#INFO" \
+               "\nDon't have kick permissions, so automatically disabled antiflood.".format(chat.title)
+
 
 @run_async
 @user_admin
