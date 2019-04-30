@@ -166,7 +166,15 @@ def reply_filter(bot: Bot, update: Update):
                 message.reply_voice(filt.reply)
             elif filt.is_video:
                 message.reply_video(filt.reply)
-            
+            elif filt.has_markdown:
+                buttons = sql.get_buttons(chat.id, filt.keyword)
+                keyb = build_keyboard(buttons)
+                keyboard = InlineKeyboardMarkup(keyb)
+
+                try:
+                    message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
+                                       disable_web_page_preview=True,
+                                       reply_markup=keyboard)
                 except BadRequest as excp:
                     if excp.message == "Unsupported url protocol":
                         message.reply_text("You seem to be trying to use an unsupported url protocol. Telegram "
