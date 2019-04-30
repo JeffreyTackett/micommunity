@@ -1,6 +1,5 @@
-
 {
-  "name": "Jack",
+  "name": "Jack/ MI community bot",
   "description": "Telegram's sassiest group manager. Modular Telegram group management bot!",
   "keywords": [
     "telegram",
@@ -10,7 +9,7 @@
     "3",
     "jack"
   ],
-  "repository": "https://github.com/JeffreyTackett/miuibeta",
+  "repository": "https://github.com/JeffreyTackett/micommunitybot",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable env variables",
